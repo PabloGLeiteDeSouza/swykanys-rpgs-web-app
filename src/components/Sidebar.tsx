@@ -7,7 +7,6 @@ import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./ui/menu"
 import { LinkButton } from "./ui/link-button"
 import Link from "next/link"
 import { GiAngelWings, GiMagicAxe, GiMagicGate, GiThorHammer } from "react-icons/gi"
-import { FaHistory } from "react-icons/fa"
 
 const Sidebar: React.FC = () => {
     const { open, onToggle} = useDisclosure();
