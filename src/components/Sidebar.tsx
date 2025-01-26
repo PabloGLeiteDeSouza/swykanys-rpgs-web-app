@@ -7,9 +7,12 @@ import { MenuContent, MenuItem, MenuRoot, MenuTrigger } from "./ui/menu"
 import { LinkButton } from "./ui/link-button"
 import Link from "next/link"
 import { GiAngelWings, GiMagicAxe, GiMagicGate, GiThorHammer } from "react-icons/gi"
+import { usePathname } from "next/navigation"
+import { Tooltip } from "./ui/tooltip"
 
 const Sidebar: React.FC = () => {
     const { open, onToggle} = useDisclosure();
+    const path = usePathname();
     return (
         <VStack _dark={{ bgColor: "gray.800" }} _light={{ bgColor: "gray.300" }} px="2" py="1.5" rounded="md" data-open={!open && undefined} _open={{ w: "3/12" }} h="full" justifyContent="space-between" suppressHydrationWarning>
             {/* Content */}
@@ -18,51 +21,69 @@ const Sidebar: React.FC = () => {
                     <FaBars />
                 </Button>
                 <VStack w="full" gap="4">
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/">
-                            <FaHouse /> {open && "Home"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/rpg">
-                            <GiMagicAxe /> {open && "RPGs"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/personagens">
-                            <GiAngelWings /> {open && "Personagens"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/npcs">
-                            <FaPeopleRobbery /> {open && `NPC's`}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/classes">
-                            <GiThorHammer /> {open && "Classes"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/fichas">
-                            <FaClipboard /> {open && "Fichas"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/livros">
-                            <FaBook /> {open && "Livros"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/historias">
-                            <GiMagicGate /> {open && "Histórias"}
-                        </Link>
-                    </LinkButton>
-                    <LinkButton w="full" variant="ghost" asChild>
-                        <Link href="/ajuda">
-                            <FaQuestion /> {open && "Ajuda"}
-                        </Link>
-                    </LinkButton>
+                    <Tooltip content="Home" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/">
+                                <FaHouse /> {open && "Home"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Rpgs" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/rpgs" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/rpgs">
+                                <GiMagicAxe /> {open && "RPGs"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Personagens" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/personagens" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/personagens">
+                                <GiAngelWings /> {open && "Personagens"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Npcs" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/npcs" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/npcs">
+                                <FaPeopleRobbery /> {open && `NPC's`}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Classes" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/classes" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/classes">
+                                <GiThorHammer /> {open && "Classes"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Fichas" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/fichas" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/fichas">
+                                <FaClipboard /> {open && "Fichas"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Livros" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/livros" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/livros">
+                                <FaBook /> {open && "Livros"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Historias" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/historias" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/historias">
+                                <GiMagicGate /> {open && "Histórias"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
+                    <Tooltip content="Ajuda" positioning={{ placement: "top" }}>
+                        <LinkButton data-active={path !== "/ajuda" && undefined} _active={{ _light: { bgColor: "gray.100" }, _dark: { bgColor: "gray.900" } }} w="full" variant="ghost" asChild>
+                            <Link href="/ajuda">
+                                <FaQuestion /> {open && "Ajuda"}
+                            </Link>
+                        </LinkButton>
+                    </Tooltip>
                 </VStack>
             </VStack>
             <Box w="full">

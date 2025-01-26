@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <AppComponent>
       <Box w="full" suppressHydrationWarning>
-        <Heading>aaa</Heading>
+        <Heading>Home</Heading>
       </Box>
     </AppComponent>
   );
