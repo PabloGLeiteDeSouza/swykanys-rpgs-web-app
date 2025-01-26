@@ -11,7 +11,7 @@ import { GiAngelWings, GiMagicAxe, GiMagicGate, GiThorHammer } from "react-icons
 const Sidebar: React.FC = () => {
     const { open, onToggle} = useDisclosure();
     return (
-        <VStack px="2" py="1.5" rounded="md" data-open={!open && undefined} _open={{ w: "3/12" }} h="full" justifyContent="space-between" suppressHydrationWarning>
+        <VStack _dark={{ bgColor: "gray.800" }} _light={{ bgColor: "gray.300" }} px="2" py="1.5" rounded="md" data-open={!open && undefined} _open={{ w: "3/12" }} h="full" justifyContent="space-between" suppressHydrationWarning>
             {/* Content */}
             <VStack w="full" gap="4">
                 <Button variant="ghost" w="full" onClick={onToggle}>
