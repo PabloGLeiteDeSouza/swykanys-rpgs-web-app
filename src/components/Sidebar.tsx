@@ -15,6 +15,7 @@ import { Status } from "./ui/status"
 import { HoverCardArrow, HoverCardContent, HoverCardRoot, HoverCardTrigger } from "./ui/hover-card"
 import { SelectContent, SelectItem, SelectRoot, SelectValueText } from "./ui/select"
 import { signOut } from "next-auth/react"
+import abreviarNome from "@/utils/abreviar-nome"
 
 const Sidebar: React.FC<{ session: Session | null }> = ({ session }) => {
     const { open, onToggle} = useDisclosure();
@@ -28,7 +29,7 @@ const Sidebar: React.FC<{ session: Session | null }> = ({ session }) => {
         ]
     })
     return (
-        <VStack _dark={{ bgColor: "gray.800" }} _light={{ bgColor: "gray.300" }} px="2" py="2" rounded="md" data-open={!open && undefined} _open={{ w: "3/12" }} h="full" justifyContent="space-between" suppressHydrationWarning>
+        <VStack xlDown={{ display: "none", visibility: "hidden" }} _dark={{ bgColor: "gray.800" }} _light={{ bgColor: "gray.300" }} px="2" py="2" rounded="md" data-open={!open && undefined} _open={{ w: "3/12" }} h="full" justifyContent="space-between" suppressHydrationWarning>
             {/* Content */}
             <VStack w="full" gap="4">
                 <Button variant="ghost" w="full" onClick={onToggle}>
@@ -112,16 +113,16 @@ const Sidebar: React.FC<{ session: Session | null }> = ({ session }) => {
                     </Tooltip>
                 </VStack>
             </VStack>
-            <Box w="full">
+            <Box xlTo2xl={{ h: "12" }} w="full">
                 <MenuRoot positioning={{ placement: "right-start" }}>
                     <MenuTrigger asChild>
                         <Button variant="plain" w="full">
-                            <HStack justifyContent="center" gap="5" w="full">
+                            <HStack xlDown={{ alignItems: "center", justifyContent: "space-between"}} justifyContent="center" gap="10" w="full">
                                 <Avatar src={session?.user?.image ? session.user.image : undefined} />
                                 {open && (
                                     <>
-                                        <Box>
-                                            <Text>{`${session?.user?.name}`}</Text>
+                                        <Box xlDown={{ w: "1/2", overflow: "hidden", whiteSpace: "normal", wordBreak: "break-word", display: "flex", flexDirection: "column", gap: "1.5" }} >
+                                            <Text textAlign="start" w="100%" overflowWrap="break-word" wordBreak="break-word" whiteSpace="normal">{session?.user?.name ? abreviarNome(session.user.name) : ""}</Text>
                                             <HoverCardRoot size="sm" positioning={{ placement: "top" }}>
                                                 <HoverCardTrigger asChild>
                                                     <Status value="success">
