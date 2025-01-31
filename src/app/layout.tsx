@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Provider } from "@/components/ui/provider"
+import AppRoot from "./App";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,9 @@ export default function RootLayout({
     <html lang="pt-br" suppressHydrationWarning>
       <body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
         <Provider>
-          {children}
+          <AppRoot>
+            {children}
+          </AppRoot>
         </Provider>
       </body>
     </html>

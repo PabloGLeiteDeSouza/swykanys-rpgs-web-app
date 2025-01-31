@@ -6,6 +6,7 @@ export default function Classes() {
         <AppComponent>
             <Box w="full" suppressHydrationWarning>
                 <Heading>Classes</Heading>
+                
             </Box>
         </AppComponent>
     );
