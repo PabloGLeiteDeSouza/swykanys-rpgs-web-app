@@ -5,16 +5,16 @@ import authConfig from "./auth.config"
 
 const { auth } = NextAuth(authConfig)
 
-export default auth(async function middleware(req: NextRequest) {
+interface NextAuthRequest extends NextRequest {
+  auth?: unknown;
+}
+
+export default auth(async function middleware(req: NextAuthRequest) {
   // Se a rota já estiver excluída pelo matcher, essa função nem é chamada.
   // Então, se cair aqui, é pq é rota protegida.
 
-  // Verifica se o usuário tem sessionToken (ajuste o nome de acordo com seu setup real).
-  // Em produção, dependendo da configuração, pode ser "__Secure-authjs.session-token"
-  const sessionToken = req.cookies.get("authjs.session-token")
-
-  // Se não tiver token, redireciona para sign-in
-  if (!sessionToken) {
+  const auth = req.auth;
+  if (!auth && !req.nextUrl.pathname.includes('/auth')) {
     return NextResponse.redirect(new URL("/auth/sign-in", req.url))
   }
 
