@@ -1,10 +1,10 @@
 import { Box, HStack } from "@chakra-ui/react"
 import Sidebar from "../Sidebar"
 import Navbar from "../Navbar";
-import { Session } from "next-auth";
+import { auth } from "@/auth";
 
-const AppComponent: React.FC<{ children: React.ReactNode; session: Session | null; }> = ({ children, session }) => {
-    
+const AppComponent: React.FC<{ children: React.ReactNode; }> = async ({ children }) => {
+    const session = await auth();
     return (
         <HStack gap={0} w="full" h="vh" suppressHydrationWarning>
             {/* Content */}
