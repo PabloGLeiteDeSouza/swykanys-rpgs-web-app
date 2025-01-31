@@ -14,6 +14,7 @@ import { Session } from "next-auth"
 import { Status } from "./ui/status"
 import { HoverCardArrow, HoverCardContent, HoverCardRoot, HoverCardTrigger } from "./ui/hover-card"
 import { SelectContent, SelectItem, SelectRoot, SelectValueText } from "./ui/select"
+import { signOut } from "next-auth/react"
 
 const Sidebar: React.FC<{ session: Session | null }> = ({ session }) => {
     const { open, onToggle} = useDisclosure();
@@ -159,7 +160,9 @@ const Sidebar: React.FC<{ session: Session | null }> = ({ session }) => {
                             <MenuItem value="configuracoes">
                             <FaGear />Configurações
                             </MenuItem> 
-                            <MenuItem value="sair">
+                            <MenuItem onClick={async () => {
+                                await signOut();
+                            }} value="sair">
                             <FaDoorOpen />Sair
                         </MenuItem>
                     </MenuContent>

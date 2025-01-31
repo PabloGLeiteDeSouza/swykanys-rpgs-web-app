@@ -4,9 +4,9 @@ import { FaGoogle } from "react-icons/fa6"
 
 const SignInGoogleButton: React.FC = () => {
     return (
-        <Button onClick={async () => {
+        <Button w="60" onClick={async () => {
             "use server";
-            await signIn("google");
+            await signIn("google", { redirectTo: "/" });
         }}>
             <FaGoogle />
             Sign in with Google
