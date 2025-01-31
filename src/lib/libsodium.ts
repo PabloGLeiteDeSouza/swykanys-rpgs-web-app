@@ -1,7 +1,7 @@
 export default class Libsodium {
-    private sodium: typeof import('libsodium-wrappers');
+    private sodium!: typeof import('libsodium-wrappers');
     constructor() {
-        import("libsodium-wrappers").then(async (data) => {
+        import("libsodium-wrappers").then((data) => {
             this.sodium = data;
         });
         
